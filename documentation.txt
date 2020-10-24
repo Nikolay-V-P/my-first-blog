@@ -1,0 +1,92 @@
+# 1 '''Создание виртуального окружения (virtualenv)'''
+	1.1 # python -m venv имя_окружения
+
+# 2 '''Активация вирт.окруж.(venv)'''
+	2.1 # имя_окружения\Scripts\Activate
+
+# 3 '''Обновление pip'''
+	3.1 # python -m pip install --upgrade pip'
+
+# 4 '''Установка библиотек через указания требований(requirements)'''
+	4.1 Создайте файл в директории где хранится папка с виртуальным окружением:
+		# requirements.txt
+	4.2 В requirements.txt ввнесите след.тектс:
+		# Django~=2.2.4
+	4.3 Выполните команду в консоли с активированной виртуальной средой:
+		# pip install -r requirements.txt
+
+# 5 '''Создание проекта(project)'''
+	5.1 В активной virtualenv(venv) в консеоле введите:
+		# django-admin.exe startproject имя_проекта .
+		- этот скрипт создает структуру директории и файлы.
+
+# 6 '''Изменяем настройки(settings)'''
+	6.1 Внесем изменения в 'settings.py':
+		6.1.1 # TIME_ZONE = "Europe/Moscow"
+		- изменяем часовой пояс сайта
+		6.1.2 # LANGUAGE_CODE = "ru-ru"
+		- изменяем язык сайта
+		6.1.3 Добавляем информацию о расположении статических файлов, для этого в конце файла добавим:
+			# STATIC_ROOT = os.patch.join(BASE_DIR, "static"
+		6.2.4 # ALLOWED_HOSTES = ['127.0.0.1', 'pythonanywhere.com']
+		- добавили разрешенные хсты
+
+# 7 '''Настройки базы данных'''
+	7.1 Для создания базы данных (по умолчанию sqlite3) в консоле, в venv, введите:
+		# python manage.py migrate
+
+# 8 '''Запуск веб-севера'''
+	8.1 # python manage.py runserver
+	- запустили сервер
+	8.2 # http://127.0.0.1:8000/
+	- адрес нашего сервера
+	8.3 CTRL + c для остановки сервера в командной строке
+
+# 9 '''Создание приложения'''
+	9.1 из основной директории в консоле введем:
+		# python manage.py startapp имя_приложения
+
+	9.2 После создания приложения, в setings.py укажем, что django должен его использовать
+		# 'INSTALLED_APPS = [..., имя_приложения,]'		
+
+# 10 '''Создание модели записи в блоге'''
+	10.1 Модель создаем в имя_приложение\models.py
+		- пример модели https://tutorial.djangogirls.org/ru/django_models/
+		- может быть полезно и это https://docs.djangoproject.com/en/1.11/ref/models/fields/#field-types
+
+# 11 '''Создаем таблицы моделей в базе данных'''
+	11.1 Создадим файл миграции для внесенных элементов:
+		# python manage.py makemigrations имя_приложения
+	11.2 Произведем миграцию:
+		# python manage.py migarte имя_приложения
+
+# 12 '''Администрирование Django'''
+	12.1 Откроем файл "/имя_приложени/admin.py", внесем:
+		# from django.contrib import admin
+		# from .models import Post
+		# admin.site.reqister(Post)
+	12.1 Создадим в консоле суперпользователя(superuser):
+		# python manage.py createsuperuser
+	12.3 Дала переходим по http://127.0.0.1:8000/admin/
+	12.4 Больше об admin здесь https://docs.djangoproject.com/en/1.11/ref/contrib/admin/
+
+# 13 '''Создаём Git-репозиторий'''
+	13.1 Для инициализации репозитория в консоле:
+		# git init
+	13.2 Создадим список каталогов и файлов которые git должен игнорировать:
+		- .gitignore (имя файла)
+	13.3 Получить статус по рипозиторию:
+		# git status
+	13.4 Сохранения изменений в Git
+		# git add --all .
+		# git commit -m "коментарий"
+
+# 14 '''Загружаем код в репозиторий GitHub'''
+	14.1 Создаем на GitHub новый репозиторий/проект и копируем ссылку
+	14.2 В консоле:
+		# git remote add origin скопированная_ссылка
+		# git push -u origin masterckeq
+
+	
+
+
